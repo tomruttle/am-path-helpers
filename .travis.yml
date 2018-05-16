@@ -1,0 +1,19 @@
+language: node_js
+install: npm i
+script: npm run ci
+deploy:
+  - provider: releases
+    api_key: $GITHUB_TOKEN
+    skip_cleanup: true
+    on:
+      tags: true
+      repo: tomruttle/am-path-helpers
+      all_branches: true
+  - provider: npm
+    email: tom@tomruttle.com
+    api_key: $NPM_TOKEN
+    skip_cleanup: true
+    on:
+      tags: true
+      repo: tomruttle/am-path-helpers
+      all_branches: true

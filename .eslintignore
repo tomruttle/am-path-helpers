@@ -1,0 +1,7 @@
+node_modules/
+.git/
+dist/
+flow-typed/
+.nyc_output/
+coverage/
+es5/
