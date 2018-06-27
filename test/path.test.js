@@ -51,7 +51,7 @@ describe('Path Helpers', () => {
     const { getAdditionalState } = getPathHelpers(routes);
 
     it('finds params from route', () => {
-      const { params } = getAdditionalState('APP', { resource: '/path/1058690/valid/optional' });
+      const { params } = getAdditionalState({ resource: '/path/1058690/valid/optional', route: { name: 'APP' } });
       expect(params).to.deep.equals({
         id: '1058690',
         otherParam: 'valid',
@@ -60,7 +60,7 @@ describe('Path Helpers', () => {
     });
 
     it('handles optional params from route', () => {
-      const { params, query } = getAdditionalState('APP', { resource: '/path/1058690/valid' });
+      const { params, query } = getAdditionalState({ resource: '/path/1058690/valid', route: { name: 'APP' } });
       expect(params).to.deep.equals({
         id: '1058690',
         otherParam: 'valid',
@@ -70,17 +70,17 @@ describe('Path Helpers', () => {
     });
 
     it('handles invalid routes', () => {
-      const { params } = getAdditionalState('APP', { resource: '/invalid/1058690/valid' });
+      const { params } = getAdditionalState({ resource: '/invalid/1058690/valid', route: { name: 'APP' } });
       expect(params).to.be.an('object').that.is.empty;
     });
 
     it('handles invalid params', () => {
-      const { params } = getAdditionalState('APP', { resource: '/path/1058690/invalid/abcde' });
+      const { params } = getAdditionalState({ resource: '/path/1058690/invalid/abcde', route: { name: 'APP' } });
       expect(params).to.be.an('object').that.is.empty;
     });
 
     it('parses queries', () => {
-      const { params, query } = getAdditionalState('APP', { resource: '/path/1058690/valid?test=true' });
+      const { params, query } = getAdditionalState({ resource: '/path/1058690/valid?test=true', route: { name: 'APP' } });
       expect(params).to.deep.equals({
         id: '1058690',
         otherParam: 'valid',
